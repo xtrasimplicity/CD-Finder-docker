@@ -5,7 +5,8 @@ ENV REPOSITORY_URL https://github.com/xtrasimplicity/CD-finder.git
 
 RUN apt update && \
     apt install -y --no-install-recommends git && \
-    git clone $REPOSITORY_URL /opt/drupal/vendor/cubear/finder
+    git clone $REPOSITORY_URL /opt/drupal/vendor/cubear/finder && \
+    ln -s /opt/drupal/vendor/cubear /opt/drupal/web/modules/contrib/
 
 RUN composer self-update --2 && \
     composer require drupal/paragraphs && \
