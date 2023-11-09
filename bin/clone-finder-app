@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+REPOSITORY_URL="https://github.com/xtrasimplicity/CD-finder.git"
+TARGET_PATH="/opt/drupal/vendor/cubear/finder"
+
+if [[ ! -d $TARGET_PATH ]]; then
+  echo "Cloning $REPOSITORY_URL into $TARGET_PATH..."
+  git clone $REPOSITORY_URL $TARGET_PATH
+  
+  exit 0
+fi
+
+# The path already exists, so let's fetch the latest changes...
+cd $TARGET_PATH
+git config --global --add safe.directory $TARGET_PATH
+git pull

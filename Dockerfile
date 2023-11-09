@@ -1,13 +1,12 @@
 FROM drupal:10-apache
 
-ENV REPOSITORY_URL https://github.com/xtrasimplicity/CD-finder.git
-
-
 RUN apt update && \
-    apt install -y --no-install-recommends git && \
-    git clone $REPOSITORY_URL /opt/drupal/vendor/cubear/finder
+    apt install -y --no-install-recommends git
 
-RUN composer self-update --2 && \
+ADD bin/clone-finder-app /
+RUN chmod +x /clone-finder-app && \
+    /clone-finder-app && \
+    composer self-update --2 && \
     composer require drupal/paragraphs && \
     composer require 'drupal/bartik:^1.0' && \
     composer config --no-plugins allow-plugins.composer/installers true && \
