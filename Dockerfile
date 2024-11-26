@@ -8,6 +8,7 @@ RUN chmod +x /clone-finder-app && \
     /clone-finder-app && \
     composer self-update --2 && \
     composer require drupal/paragraphs && \
+    composer require drush/drush && \
     composer require 'drupal/bartik:^1.0' && \
     composer config --no-plugins allow-plugins.composer/installers true && \
     composer config --no-plugins allow-plugins.drupal/core-composer-scaffold true && \
